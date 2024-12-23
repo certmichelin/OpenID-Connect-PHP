@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2024-12-23
+
+### BC
+* Drop support for PHP 7.0 to avoid deprecation warnings in PHP 8.4
+
+### New
+* Add support for JSON encoding by simdjson_encode method supported since simdjson_php v5
+
+### Fixed
+* Integration with Okta ([#19](https://github.com/JakubOnderka/OpenID-Connect-PHP/pull/19))
+* Tests with newer phpseclib version works as before
+
 ## [1.1.0] - 2022-10-19
 
 ### New
