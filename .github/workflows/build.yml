@@ -44,15 +44,7 @@ jobs:
 
       - name: Install composer dependencies
         run: |
-          composer require --dev php-parallel-lint/php-parallel-lint --no-update
-          composer require --dev squizlabs/php_codesniffer --no-update
           composer update $DEFAULT_COMPOSER_FLAGS
-
-      - name: Update PHPUnit
-        run: composer require --dev phpunit/phpunit ^9 --update-with-dependencies
-
-      - name: Install PHPStan
-        run: composer require --dev phpstan/phpstan --update-with-dependencies
 
       - name: Run PHP Lint
         run: vendor/bin/parallel-lint src tests
