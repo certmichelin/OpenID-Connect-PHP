@@ -48,12 +48,10 @@ jobs:
           composer require --dev squizlabs/php_codesniffer --no-update
           composer update $DEFAULT_COMPOSER_FLAGS
 
-      - name: Update PHPUnit for PHP 8+
-        if: startsWith(matrix.php, '8.')
+      - name: Update PHPUnit
         run: composer require --dev phpunit/phpunit ^9 --update-with-dependencies
 
-      - name: Install PHPStan for PHP 8+
-        if: startsWith(matrix.php, '8.')
+      - name: Install PHPStan
         run: composer require --dev phpstan/phpstan --update-with-dependencies
 
       - name: Run PHP Lint
@@ -63,7 +61,6 @@ jobs:
         run: vendor/bin/phpcs
 
       - name: Run PHPStan static analysis
-        if: startsWith(matrix.php, '8.')
         run: vendor/bin/phpstan analyse src
 
       - name: Run unit tests with coverage
