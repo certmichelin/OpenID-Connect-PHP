@@ -422,7 +422,7 @@ class OpenIDConnectClient
     private $enabledSignatureAlgos;
 
     /**
-     * @var bool Downgrade the use of the Request Object approach for the authorization request to use plain parameters. False by default. 
+     * @var bool Downgrade the use of the Request Object approach for the authorization request to use plain parameters. False by default.
      */
     private $disableRequestObject = false;
 
