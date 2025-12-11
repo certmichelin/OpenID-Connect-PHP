@@ -9,6 +9,7 @@
     <rule ref="PSR12">
         <exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
         <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterUseBlock"/>
         <exclude name="Generic.Files.LineLength.TooLong"/>
     </rule>
 </ruleset>
