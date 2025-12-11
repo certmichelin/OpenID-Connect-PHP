@@ -1,11 +1,11 @@
 {
-    "name": "jakub-onderka/openid-connect-php",
+    "name": "certmichelin/openid-connect-php",
     "description": "Bare-bones OpenID Connect client",
     "keywords": ["oidc", "openid", "jwt", "oauth2"],
     "license": "Apache-2.0",
     "authors": [{
-        "name": "Jakub Onderka",
-        "email": "jakub.onderka@gmail.com"
+        "name": "Maxime Escourbiac",
+        "email": "maxime.escourbiac@michelin.com"
     }],
     "require": {
         "php": ">=7.1",
