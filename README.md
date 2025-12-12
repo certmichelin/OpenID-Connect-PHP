@@ -1,10 +1,9 @@
 # PHP OpenID Connect Basic Client
 
-[![Latest Stable Version](http://poser.pugx.org/jakub-onderka/openid-connect-php/v)](https://packagist.org/packages/jakub-onderka/openid-connect-php) [![Latest Unstable Version](http://poser.pugx.org/jakub-onderka/openid-connect-php/v/unstable)](https://packagist.org/packages/jakub-onderka/openid-connect-php) [![PHP Version Require](http://poser.pugx.org/jakub-onderka/openid-connect-php/require/php)](https://packagist.org/packages/jakub-onderka/openid-connect-php)
+[![Latest Stable Version](http://poser.pugx.org/certmichelin/openid-connect-php/v)](https://packagist.org/packages/certmichelin/openid-connect-php) [![Latest Unstable Version](http://poser.pugx.org/certmichelin/openid-connect-php/v/unstable)](https://packagist.org/packages/certmichelin/openid-connect-php) [![PHP Version Require](http://poser.pugx.org/certmichelin/openid-connect-php/require/php)](https://packagist.org/packages/certmichelin/openid-connect-php)
 
-A simple library that allows an application to authenticate a user through the basic OpenID Connect flow.
-This library hopes to encourage OpenID Connect use by making it simple enough for a developer with little knowledge of
-the OpenID Connect protocol to setup authentication.
+A lightweight library used by MISP to enable user authentication through the OpenID Connect protocol.
+It provides a simple and reliable implementation of the OpenID Connect flow, allowing MISP to integrate OpenID-based authentication without requiring in-depth knowledge of the protocol.
 
 **This is a fork of [jumbojett/OpenID-Connect-PHP](https://github.com/jumbojett/OpenID-Connect-PHP)**
 
@@ -23,17 +22,21 @@ A special thanks goes to Michael Jett, original author of this library and Justi
 
 ## Requirements
 
- 1. PHP 7.1 or greater
+ 1. PHP 8.0 or greater
  2. CURL extension
  3. JSON extension
  4. APCu for caching (optional)
 
 ## Install
- 1. Install library using composer
+
+1. Install library using composer.
+
+```bash
+composer require certmichelin/openid-connect-php
 ```
-composer require jakub-onderka/openid-connect-php
-```
- 2. Include composer autoloader
+
+2. Include composer autoloader
+
 ```php
 require __DIR__ . '/vendor/autoload.php';
 ```
@@ -41,7 +44,7 @@ require __DIR__ . '/vendor/autoload.php';
 ## Example 1: Basic Client
 
 ```php
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient;
 
 $oidc = new OpenIDConnectClient('https://id.provider.com', 'ClientIDHere', 'ClientSecretHere');
 $oidc->authenticate();
@@ -53,7 +56,7 @@ $name = $oidc->requestUserInfo('given_name');
 ## Example 2: Dynamic Registration
 
 ```php
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient;
 
 $oidc = new OpenIDConnectClient("https://id.provider.com");
 
@@ -77,7 +80,7 @@ $oidc->setCertPath("/path/to/my.cert");
 ## Example 4: Request Client Credentials Token
 
 ```php
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient;
 
 $oidc = new OpenIDConnectClient('https://id.provider.com', 'ClientIDHere', 'ClientSecretHere');
 $oidc->providerConfigParam(['token_endpoint' => 'https://id.provider.com/connect/token']);
@@ -90,7 +93,7 @@ $clientCredentialsToken = $oidc->requestClientCredentialsToken()->access_token;
 ## Example 5: Request Resource Owners Token (with client auth)
 
 ```php
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient;
 
 $oidc = new OpenIDConnectClient('https://id.provider.com', 'ClientIDHere','ClientSecretHere');
 $oidc->providerConfigParam(['token_endpoint' => 'https://id.provider.com/connect/token']);
@@ -108,10 +111,10 @@ $token = $oidc->requestResourceOwnerToken(true)->access_token;
 
 ## Example 6: Basic client for implicit flow e.g. with Azure AD B2C
 
-See https://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth
+See the OpenID Connect implicit flow specification: [Implicit Flow](https://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth)
 
 ```php
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient;
 
 $oidc = new OpenIDConnectClient('https://id.provider.com', 'ClientIDHere', 'ClientSecretHere');
 $oidc->setResponseTypes(['id_token']);
@@ -125,10 +128,10 @@ $sub = $oidc->getVerifiedClaims('sub');
 
 ## Example 7: Introspection of access token
 
-See https://tools.ietf.org/html/rfc7662
+See [RFC 7662](https://tools.ietf.org/html/rfc7662)
 
 ```php
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient;
 
 $oidc = new OpenIDConnectClient('https://id.provider.com', 'ClientIDHere', 'ClientSecretHere');
 $data = $oidc->introspectToken('an.access-token.as.given');
@@ -140,7 +143,7 @@ if (!$data->active) {
 ## Example 8: PKCE Client
 
 ```php
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient;
 
 $oidc = new OpenIDConnectClient('https://id.provider.com', 'ClientIDHere');
 $oidc->setCodeChallengeMethod('S256');
@@ -149,6 +152,7 @@ $name = $oidc->requestUserInfo('given_name');
 ```
 
 ## Development Environments
+
 In some cases you may need to disable SSL security on your development systems.
 Note: This is not recommended on production systems.
 
@@ -162,11 +166,3 @@ Also, your local system might not support HTTPS, so you might disable upgrading 
 ```php
 $oidc->httpUpgradeInsecureRequests(false);
 ```
-
-### Todo
-- Dynamic registration does not support registration auth tokens and endpoints
-
-  [1]: http://openid.net/specs/openid-connect-basic-1_0-15.html#id_res
-  
-## Contributing
- - All pull requests, once merged, should be added to the CHANGELOG.md file.
