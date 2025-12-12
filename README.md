@@ -5,7 +5,7 @@
 A lightweight library used by MISP to enable user authentication through the OpenID Connect protocol.
 It provides a simple and reliable implementation of the OpenID Connect flow, allowing MISP to integrate OpenID-based authentication without requiring in-depth knowledge of the protocol.
 
-**This is a fork of [jumbojett/OpenID-Connect-PHP](https://github.com/jumbojett/OpenID-Connect-PHP)**
+**This is a fork of [JakubOnderka/OpenID-Connect-PHP](https://github.com/JakubOnderka/OpenID-Connect-PHP)**
 
 Jumbojett`s library is great, but lacks of some features, proper testing, and it is not ready for new PHP versions. So I created
 this fork. This fork requires PHP 7.1 or greater, if you need to use older PHP version, please use original version.
