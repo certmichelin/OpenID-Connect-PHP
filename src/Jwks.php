@@ -4,16 +4,16 @@
 
 declare(strict_types=1);
 
-namespace JakubOnderka\OpenIDConnectClient;
+namespace CertMichelin\OpenIDConnectClient;
 
-use JakubOnderka\OpenIDConnectClientException;
+use CertMichelin\OpenIDConnectClientException;
 use phpseclib3\Crypt\Common\PublicKey;
 use phpseclib3\Crypt\EC;
 use phpseclib3\Crypt\EC\Curves;
 use phpseclib3\Crypt\RSA;
 use phpseclib3\Math\BigInteger;
-use function JakubOnderka\base64url_decode;
-use function JakubOnderka\base64url_encode;
+use function CertMichelin\base64url_decode;
+use function CertMichelin\base64url_encode;
 
 /**
  * JSON Web Key Set

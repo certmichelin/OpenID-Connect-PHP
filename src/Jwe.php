@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JakubOnderka\OpenIDConnectClient;
+namespace CertMichelin\OpenIDConnectClient;
 
-use JakubOnderka\Json;
-use JakubOnderka\JsonException;
+use CertMichelin\Json;
+use CertMichelin\JsonException;
 use phpseclib3\Crypt\AES;
 use phpseclib3\Crypt\RSA;
-use function JakubOnderka\base64url_decode;
-use function JakubOnderka\base64url_encode;
+use function CertMichelin\base64url_decode;
+use function CertMichelin\base64url_encode;
 
 class Jwe
 {

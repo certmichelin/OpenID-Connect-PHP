@@ -2,8 +2,8 @@
 
 namespace Benchmark;
 
-use JakubOnderka\Json;
-use JakubOnderka\OpenIDConnectClient\Jwt;
+use CertMichelin\Json;
+use CertMichelin\OpenIDConnectClient\Jwt;
 use phpseclib3\Crypt\EC;
 use phpseclib3\Crypt\RSA;
 

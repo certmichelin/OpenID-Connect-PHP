@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace JakubOnderka {
+namespace CertMichelin {
     function setCurlExec(array $curl)
     {
         global $CURL;
@@ -24,10 +24,10 @@ namespace JakubOnderka {
 
 namespace {
 
-    use JakubOnderka\ErrorResponse;
-    use JakubOnderka\OpenIDConnectClient;
+    use CertMichelin\ErrorResponse;
+    use CertMichelin\OpenIDConnectClient;
     use PHPUnit\Framework\TestCase;
-    use function JakubOnderka\setCurlExec;
+    use function CertMichelin\setCurlExec;
 
     class FetchUrlTest extends TestCase
     {

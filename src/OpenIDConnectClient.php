@@ -24,14 +24,14 @@
 
 declare(strict_types=1);
 
-namespace JakubOnderka;
+namespace CertMichelin;
 
 use phpseclib3\Crypt\Common\PrivateKey;
 use phpseclib3\Crypt\Common\PublicKey;
 use phpseclib3\Crypt\EC;
 use phpseclib3\Crypt\RSA;
-use JakubOnderka\OpenIDConnectClient\Jwt;
-use JakubOnderka\OpenIDConnectClient\Jwks;
+use CertMichelin\OpenIDConnectClient\Jwt;
+use CertMichelin\OpenIDConnectClient\Jwks;
 use phpseclib3\Exception\NoKeyLoadedException;
 
 /**

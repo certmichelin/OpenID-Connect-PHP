@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-use JakubOnderka\CurlResponse;
-use JakubOnderka\Json;
-use JakubOnderka\OpenIDConnectClient\JwkEcFormat;
-use JakubOnderka\OpenIDConnectClient\Jwt;
-use JakubOnderka\OpenIDConnectClient;
+use CertMichelin\CurlResponse;
+use CertMichelin\Json;
+use CertMichelin\OpenIDConnectClient\JwkEcFormat;
+use CertMichelin\OpenIDConnectClient\Jwt;
+use CertMichelin\OpenIDConnectClient;
 use phpseclib3\Crypt\EC;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -62,7 +62,7 @@ JSON;
     /**
      * @param string $alg
      * @param string $jwt
-     * @throws \JakubOnderka\OpenIDConnectClientException
+     * @throws \CertMichelin\OpenIDConnectClientException
      * @dataProvider providesTokens
      */
     public function testTokenVerification(string $alg, string $jwt)
@@ -78,7 +78,7 @@ JSON;
     /**
      * @param string $alg
      * @param string $jwt
-     * @throws \JakubOnderka\OpenIDConnectClientException
+     * @throws \CertMichelin\OpenIDConnectClientException
      * @dataProvider providesTokens
      */
     public function testTokenVerification_invalidKid(string $alg, string $jwt)
@@ -101,7 +101,7 @@ JSON;
     /**
      * @param string $jwt
      * @return void
-     * @throws \JakubOnderka\OpenIDConnectClientException
+     * @throws \CertMichelin\OpenIDConnectClientException
      * @dataProvider providesHsTokens
      */
     public function testHsTokenVerification(string $jwt)

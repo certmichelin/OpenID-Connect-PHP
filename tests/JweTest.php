@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use JakubOnderka\Json;
-use JakubOnderka\OpenIDConnectClient\Jwt;
-use JakubOnderka\OpenIDConnectClient\Jwe;
+use CertMichelin\Json;
+use CertMichelin\OpenIDConnectClient\Jwt;
+use CertMichelin\OpenIDConnectClient\Jwe;
 use phpseclib3\Crypt\RSA;
 use PHPUnit\Framework\TestCase;
 
@@ -12,7 +12,7 @@ class JweTest extends TestCase
     /**
      * @dataProvider provide
      * @return void
-     * @throws \JakubOnderka\JsonException
+     * @throws \CertMichelin\JsonException
      */
     public function testSleepAndWakeup(string $alg, string $enc, RSA\PrivateKey $privateKey)
     {

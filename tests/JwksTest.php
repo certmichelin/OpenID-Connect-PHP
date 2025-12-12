@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use JakubOnderka\Json;
-use JakubOnderka\OpenIDConnectClient\Jwks;
+use CertMichelin\Json;
+use CertMichelin\OpenIDConnectClient\Jwks;
 use PHPUnit\Framework\TestCase;
 
 class JwksTest extends TestCase

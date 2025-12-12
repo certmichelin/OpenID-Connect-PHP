@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use JakubOnderka\CurlResponse;
-use JakubOnderka\OpenIDConnectClient;
-use JakubOnderka\OpenIDConnectClient\Jwt;
+use CertMichelin\CurlResponse;
+use CertMichelin\OpenIDConnectClient;
+use CertMichelin\OpenIDConnectClient\Jwt;
 use phpseclib3\Crypt\EC;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -15,8 +15,8 @@ class OpenIDConnectClientTest extends TestCase
         $client = new OpenIDConnectClient('https://example.com'); // include
 
         $binaryString = hash('sha256', '');
-        $encoded = JakubOnderka\base64url_encode($binaryString);
-        $decoded = JakubOnderka\base64url_decode($encoded);
+        $encoded = CertMichelin\base64url_encode($binaryString);
+        $decoded = CertMichelin\base64url_decode($encoded);
         $this->assertEquals($binaryString, $decoded);
 
         foreach (['=', ' ', '+', '/'] as $char) {
@@ -139,7 +139,7 @@ class OpenIDConnectClientTest extends TestCase
             ->with($this->equalTo('https://example.com/.well-known/openid-configuration'))
             ->willReturn(new CurlResponse('{"issuer":"iss'));
 
-        $this->expectException(JakubOnderka\JsonException::class);
+        $this->expectException(CertMichelin\JsonException::class);
         $client->getWellKnownIssuer();
     }
 
@@ -173,7 +173,7 @@ class OpenIDConnectClientTest extends TestCase
             ->with($this->equalTo('https://example.com/.well-known/openid-configuration'))
             ->willReturn(new CurlResponse('{"issuer":"iss"}'));
 
-        $this->expectException(JakubOnderka\OpenIDConnectClientException::class);
+        $this->expectException(CertMichelin\OpenIDConnectClientException::class);
         $this->expectExceptionMessage('Invalid OpenID Provider Metadata returned, expected issuer `https://example.com`, `iss` provided.');
         $client->getWellKnownIssuer();
     }
@@ -364,7 +364,7 @@ class OpenIDConnectClientTest extends TestCase
             ->getMock();
         $client->method('commitSession')->willReturn(true);
         $client->setClientID('id');
-        $privateKeys = \JakubOnderka\Json::decode(file_get_contents(__DIR__ . '/data/private_keys.json'));
+        $privateKeys = \CertMichelin\Json::decode(file_get_contents(__DIR__ . '/data/private_keys.json'));
 
         // PrivateKey instance
         $privateKey = EC::loadPrivateKey($privateKeys->nistp256);

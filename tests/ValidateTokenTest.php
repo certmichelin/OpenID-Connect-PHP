@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace JakubOnderka {
+namespace CertMichelin {
     function setTime(int $time)
     {
         global $TIME;
@@ -18,10 +18,10 @@ namespace JakubOnderka {
 
 namespace {
 
-    use JakubOnderka\OpenIDConnectClient\Jwt;
-    use JakubOnderka\OpenIDConnectClient;
-    use JakubOnderka\OpenIDConnectClientException;
-    use JakubOnderka\TokenValidationFailed;
+    use CertMichelin\OpenIDConnectClient\Jwt;
+    use CertMichelin\OpenIDConnectClient;
+    use CertMichelin\OpenIDConnectClientException;
+    use CertMichelin\TokenValidationFailed;
     use PHPUnit\Framework\MockObject\MockObject;
     use PHPUnit\Framework\TestCase;
 
@@ -45,7 +45,7 @@ namespace {
 
             $client->method('requestTokens')->willReturn($this->createToken(self::DEFAULT_ID_TOKEN));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->assertTrue($client->authenticate());
         }
 
@@ -57,7 +57,7 @@ namespace {
             $token['iss'] = 'https://example.org';
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->checkException(function () use ($client) {
                 $client->authenticate();
             }, 'It didn\'t pass issuer validator (expected: `https://example.com`, actual: `https://example.org`)');
@@ -71,7 +71,7 @@ namespace {
             $token['azp'] = $token['aud'];
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->assertTrue($client->authenticate());
         }
 
@@ -83,7 +83,7 @@ namespace {
             $token['aud'] = [$token['aud']];
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->assertTrue($client->authenticate());
         }
 
@@ -95,7 +95,7 @@ namespace {
             $token['aud'] = [$token['aud'], 'abcd'];
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
 
             $this->checkException(function () use ($client) {
                 $client->authenticate();
@@ -111,7 +111,7 @@ namespace {
             $token['aud'] = [$token['aud'], 'abcd'];
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->assertTrue($client->authenticate());
         }
 
@@ -119,7 +119,7 @@ namespace {
         {
             $client = $this->prepare();
             $client->method('requestTokens')->willReturn($this->createToken(self::DEFAULT_ID_TOKEN));
-            JakubOnderka\setTime(20001);
+            CertMichelin\setTime(20001);
 
             $this->checkException(function () use ($client) {
                 $client->authenticate();
@@ -134,7 +134,7 @@ namespace {
             $token['exp'] = $token['exp'] + 0.1;
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->assertTrue($client->authenticate());
         }
 
@@ -146,7 +146,7 @@ namespace {
             $token['iat'] = "invalid";
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->checkException(function () use ($client) {
                 $client->authenticate();
             }, 'Required `iat` claim provided, but type is incorrect (expected: `int`, actual: `string`)');
@@ -160,7 +160,7 @@ namespace {
             unset($token['iat']);
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $this->checkException(function () use ($client) {
                 $client->authenticate();
             }, 'Required `iat` claim not provided');
@@ -174,21 +174,21 @@ namespace {
             $client->method('requestTokens')->willReturn($this->createToken($token));
 
             // Little bit before
-            JakubOnderka\setTime(9999);
+            CertMichelin\setTime(9999);
             $client->authenticate();
 
             // Too much before
-            JakubOnderka\setTime(5000);
+            CertMichelin\setTime(5000);
             $this->checkException(function () use ($client) {
                 $client->authenticate();
             }, 'Token was issued at 1970-01-01T02:46:40+00:00, that is more than 600 seconds in future');
 
             // Little bit after
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
             $client->authenticate();
 
             // Too much after
-            JakubOnderka\setTime(11000);
+            CertMichelin\setTime(11000);
             $this->checkException(function () use ($client) {
                 $client->authenticate();
             }, 'Token was issued at 1970-01-01T02:46:40+00:00, that is more than 600 seconds ago');
@@ -204,7 +204,7 @@ namespace {
             $token = self::DEFAULT_ID_TOKEN;
             unset($token['nonce']);
             $client->method('requestTokens')->willReturn($this->createToken($token));
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
 
             $this->checkException(function () use ($client) {
                 $client->authenticate();
@@ -219,7 +219,7 @@ namespace {
             ]);
 
             $client->method('requestTokens')->willReturn($this->createToken(self::DEFAULT_ID_TOKEN));
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
 
             $this->checkException(function () use ($client) {
                 $client->authenticate();
@@ -234,7 +234,7 @@ namespace {
             $requestTokens->access_token = 'IxC0B76vlWl3fiQhAwZUmD0hr_PPwC9hSIXRdoUslPU=';
 
             $client->method('requestTokens')->willReturn($requestTokens);
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
 
             $this->checkException(function () use ($client) {
                 $client->authenticate();
@@ -251,7 +251,7 @@ namespace {
             $requestTokens->access_token = 'IxC0B76vlWl3fiQhAwZUmD0hr_PPwC9hSIXRdoUslPU=';
 
             $client->method('requestTokens')->willReturn($requestTokens);
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
 
             $this->assertTrue($client->authenticate());
         }
@@ -262,7 +262,7 @@ namespace {
             $client->setClientID('invalid');
             $client->method('requestTokens')->willReturn($this->createToken(self::DEFAULT_ID_TOKEN));
 
-            JakubOnderka\setTime(10001);
+            CertMichelin\setTime(10001);
 
             $this->checkException(function () use ($client) {
                 $client->authenticate();
@@ -273,13 +273,13 @@ namespace {
         {
             $jwt = new Jwt("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3NlcnZlci5leGFtcGxlLmNvbSIsInN1YiI6IjI0ODI4OTc2MTAwMSIsImF1ZCI6InM2QmhkUmtxdDMiLCJpYXQiOjE0NzE1NjYxNTQsImp0aSI6ImJXSnEiLCJzaWQiOiIwOGE1MDE5Yy0xN2UxLTQ5NzctOGY0Mi02NWExMjg0M2VhMDIiLCJldmVudHMiOnsiaHR0cDovL3NjaGVtYXMub3BlbmlkLm5ldC9ldmVudC9iYWNrY2hhbm5lbC1sb2dvdXQiOnt9fX0.McD4YIsDHb8Ug5B4MRfpisQaxCCXi6EUPerx3AH3v0Q");
             $client = new OpenIDConnectClient('https://server.example.com', 's6BhdRkqt3', 'ahoj');
-            JakubOnderka\setTime(1471566155);
+            CertMichelin\setTime(1471566155);
             $client->verifyAndValidateLogoutToken($jwt);
             $this->assertTrue(true);
         }
 
         /**
-         * @throws \JakubOnderka\JsonException
+         * @throws \CertMichelin\JsonException
          */
         private function createToken(array $idTokenData): \stdClass
         {

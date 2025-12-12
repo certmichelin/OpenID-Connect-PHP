@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use JakubOnderka\Json;
-use JakubOnderka\OpenIDConnectClient\Jwt;
+use CertMichelin\Json;
+use CertMichelin\OpenIDConnectClient\Jwt;
 use phpseclib3\Crypt\EC;
 use phpseclib3\Crypt\RSA;
 use phpseclib3\Math\BigInteger;
@@ -44,7 +44,7 @@ class JwtTest extends TestCase
     /**
      * @dataProvider providesEc
      * @return void
-     * @throws \JakubOnderka\JsonException
+     * @throws \CertMichelin\JsonException
      */
     public function testCreateEcSigned(string $alg, string $curve, string $hash)
     {
@@ -82,7 +82,7 @@ class JwtTest extends TestCase
     /**
      * @dataProvider providesEdDsa
      * @return void
-     * @throws \JakubOnderka\JsonException
+     * @throws \CertMichelin\JsonException
      */
     public function testCreateEcSigned_edDsa(string $algo, string $curve)
     {
@@ -107,7 +107,7 @@ class JwtTest extends TestCase
     /**
      * @dataProvider provideRsa
      * @return void
-     * @throws \JakubOnderka\JsonException
+     * @throws \CertMichelin\JsonException
      */
     public function testCreateRsaSigned(string $alg, string $key, string $hash)
     {
@@ -146,7 +146,7 @@ class JwtTest extends TestCase
     }
 
     /**
-     * @throws \JakubOnderka\JsonException
+     * @throws \CertMichelin\JsonException
      */
     private function getPrivateKey(string $keyType): string
     {
