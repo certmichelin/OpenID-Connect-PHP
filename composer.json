@@ -1,6 +1,6 @@
 {
     "name": "certmichelin/openid-connect-php",
-    "description": "Bare-bones OpenID Connect client",
+    "description": "PHP OpenID Connect Basic Client for MISP OIDC Plugin",
     "keywords": ["oidc", "openid", "jwt", "oauth2"],
     "license": "Apache-2.0",
     "authors": [{
