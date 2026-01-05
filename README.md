@@ -1,6 +1,6 @@
 # PHP OpenID Connect Basic Client for MISP OIDC Plugin
 
-[![Latest Stable Version](http://poser.pugx.org/certmichelin/openid-connect-php/v)](https://packagist.org/packages/certmichelin/openid-connect-php) [![Latest Unstable Version](http://poser.pugx.org/certmichelin/openid-connect-php/v/unstable)](https://packagist.org/packages/certmichelin/openid-connect-php) [![PHP Version Require](http://poser.pugx.org/certmichelin/openid-connect-php/require/php)](https://packagist.org/packages/certmichelin/openid-connect-php)
+[![Latest Stable Version](https://img.shields.io/packagist/v/certmichelin/openid-connect-php)](https://packagist.org/packages/certmichelin/openid-connect-php) [![Latest Unstable Version](https://img.shields.io/packagist/vpre/certmichelin/openid-connect-php)](https://packagist.org/packages/certmichelin/openid-connect-php) [![PHP Version Require](https://img.shields.io/packagist/php-v/certmichelin/openid-connect-php)](https://packagist.org/packages/certmichelin/openid-connect-php)
 
 A lightweight library used by MISP to enable user authentication through the OpenID Connect protocol.
 It provides a simple and reliable implementation of the OpenID Connect flow, allowing MISP to integrate OpenID-based authentication without requiring in-depth knowledge of the protocol.
