@@ -7,24 +7,6 @@ It provides a simple and reliable implementation of the OpenID Connect flow, all
 
 **This is a fork of [JakubOnderka/OpenID-Connect-PHP](https://github.com/JakubOnderka/OpenID-Connect-PHP)**
 
-## Requirements
+## Usage
 
- 1. PHP 8.0 or greater
- 2. CURL extension
- 3. JSON extension
- 4. APCu for caching (optional)
-
-## Install
-
-1. Install library using composer.
-
-```bash
-composer require certmichelin/openid-connect-php
-```
-
-2. Include composer autoloader
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-```
-
+The usage of this library is defined in the MISP documentation itself and is available here: [https://github.com/MISP/MISP/tree/2.5/app/Plugin/OidcAuth](https://github.com/MISP/MISP/tree/2.5/app/Plugin/OidcAuth)
